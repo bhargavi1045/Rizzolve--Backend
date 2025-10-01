@@ -1,4 +1,5 @@
-from pydantic import BaseModel, EmailStr
+
+from pydantic import BaseModel, EmailStr, ConfigDict
 from typing import Optional, List
 from datetime import datetime
 
@@ -19,8 +20,7 @@ class UserOut(BaseModel):
     name: str
     email: EmailStr
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class TokenOut(BaseModel):
@@ -43,8 +43,7 @@ class ComplaintOut(BaseModel):
     assigned_to: Optional[str] = None
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class KBIngestIn(BaseModel):
@@ -59,4 +58,4 @@ class AskIn(BaseModel):
 
 class AskOut(BaseModel):
     answer: str
-    citations:List[str]
+    citations: List[str]
